@@ -19,9 +19,11 @@ One such algorithm defined is LUCID. More on this here: https://ieeexplore.ieee.
 
 ## How it works
 
-There are four parts to the LUCID algorithm.
+The python networkx and cdlib libraries are used as to provide the graph datastructure interface library and community-detection (SCAN) libraries respectively.
 
-1. First, the graph is initialized with the following rules.
+There are four parts to the LUCID algorithm itself:
+
+1. First, the graph is initialized with the following rules:
 - Each unique author name is created as it's own node on the graph.
 - Each node also carries with it the list of publications that are associated with said author name.
 - The edges between nodes represent occurences when the two authors of said relationship published a paper together.
@@ -43,4 +45,5 @@ There are four parts to the LUCID algorithm.
 - Should a pair of nodes satisfy all the above conditions, they are considered to be the same individial and hence merged into a single node containing the publications of both of the previous node.
 - The splitting is carried out based on the intersection of publications
 
+Once all 4 stages are done, we are left with a graph containing multiple communities. By assigning an index to each node based on the community it belongs to, and looking at the modified list of publications against each previously ambgiuous author names, one can conclude that authors sharing the same or similar names but having different cluster indexes are, in fact, different individuals.
 
